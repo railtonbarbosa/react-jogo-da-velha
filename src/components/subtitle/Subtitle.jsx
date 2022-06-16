@@ -1,4 +1,4 @@
-import styles from "./Subtitle.module.css"
+import styles from "./subtitle.module.css"
 
 function Subtitle ({children}) {
   return (
