@@ -1,20 +1,45 @@
 import styles from "./Game.module.css"
 import { useState } from "react"
+import Icon from "../icon/Icon"
 
 import GameOption from "../gameOption/GameOption"
 
 function Game () {
-  const [gameState, steGameState] = useState (Array(9).fill(0))
+  const [gameState, steGameState] = useState (Array(9).fill(0)) //um array de nove posições começando em zero!
+  const [currentPlayer, setCurrentPlayer] = useState(1)
+
+  const handleClick = (pos) => {
+     if (gameState [pos] ===0) {
+      let newGameState = [...gameState]
+      newGameState [pos] = currentPlayer
+      setCurrentPlayer(currentPlayer * -1)
+      steGameState(newGameState)
+   }
+     }
+     
   return(
-   <div className={styles.game}>
-    {
-      gameState.map((value,pos)=>
-      <GameOption 
-        key={`game-option-pos-${pos}`}
-        status={value}
-      />
-      )
-    }
+   <div className={styles.gameContent}>
+    
+      <div className={styles.game}>
+           {
+             gameState.map((value,pos)=> //usando o map iremos passar por cada uma das posições do array podendo modificalas 
+             <GameOption 
+                 key={`game-option-pos-${pos}`} //obs:todo elemento dentro   de uma map do react ele sempre precisara ter um id unico !   aqui seria o "key"
+                 status={value}
+                 onClick={() => handleClick(pos)}
+             />
+             )
+           }
+      </div>
+      <div className={styles.gameInfo}>
+        <h4>próximo a jogar </h4>
+        {
+          currentPlayer === 1 && <Icon iconName="circle" />
+        }
+        {
+          currentPlayer === -1 && <Icon iconName="x" />
+        }
+      </div>
    </div>
   )
 }
