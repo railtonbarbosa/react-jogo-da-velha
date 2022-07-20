@@ -65,7 +65,6 @@ function Game () {
                  status={value}
                  onClick={() => handleClick(pos)}
                  isWinner={verifyWinnerLine(pos)}
-                 
               />
              )
            }

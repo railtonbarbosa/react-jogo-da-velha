@@ -13,7 +13,8 @@ function GameOption ({status, onClick, isWinner}) {
        [styles.winner]: isWinner
       })
     }  
-     onClick={onClick}>
+     onClick={onClick}
+     >
       {
         status=== 1 && <GameIcon iconName="circle" size="25px" />
       }
