@@ -39,7 +39,7 @@ function GameInfo ({currentPlayer, winner, onReset}) {
         }
         <Buttton
          onClick={onReset}
-         disabled={! sholdEnableButton()}
+         disabled={!sholdEnableButton()}
         >
           Reiniciar
         </Buttton>
