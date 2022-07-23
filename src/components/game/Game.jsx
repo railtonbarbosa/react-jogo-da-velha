@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from './Game.module.css'
-
 import GameOption from '../gameOption/GameOption'
 import GameInfo from '../gameInfo/GameInfo'
-
 const winnerTable = [
   [0, 1, 2],
   [3, 4, 5],
@@ -14,13 +12,12 @@ const winnerTable = [
   [0, 4, 8],
   [2, 4, 6]
 ]
-
 function Game () {
   const [gameState, setGameState] = useState(Array(9).fill(0))
   const [currentPlayer, setCurrentPlayer] = useState(-1)
   const [winner, setWinner] = useState(0)
   const [winnerLine, setWinnerLine] = useState([])
-  const [draw, setdraw] = useState(false)
+  const [draw, setDraw] = useState(false)
 
   const handleClick = (pos) => {
     if (gameState[pos] === 0 && winner === 0) {
@@ -29,7 +26,6 @@ function Game () {
       setGameState(newGameState)
     }
   }
-
   const verifyGame = () => {
     winnerTable.forEach((line) => {
       const values = line.map((pos) => gameState[pos])
@@ -40,32 +36,29 @@ function Game () {
       }
     })
   }
-
   const handleReset = () => {
     setGameState(Array(9).fill(0))
     setWinner(0)
     setWinnerLine([])
-    setdraw(false)
+    setDraw(false)
   }
 
   const verifyDraw = () => {
-    if (gameState.find((value) => value === 0) ===  undefined && winner === 0) {
-      setdraw (true)
+    if (gameState.find((value) => value === 0) === undefined && winner === 0) {
+      setDraw(true)
     }
-
   }
 
   const verifyWinnerLine = (pos) => 
     winnerLine.find((value) => value === pos) !== undefined
-
   useEffect(() => {
     setCurrentPlayer(currentPlayer * -1)
     verifyGame()
     verifyDraw()
   }, [gameState])
 
-  useEffect (() => {
-    if (winner !== 0) setdraw (false)
+  useEffect(() => {
+    if (winner !== 0) setDraw(false)
   }, [winner])
 
   return (
@@ -78,7 +71,7 @@ function Game () {
               status={value}
               onClick={() => handleClick(pos)}
               isWinner={verifyWinnerLine(pos)}
-              isDrow={draw}
+              isDraw={draw}
             />
           )
         }
@@ -92,5 +85,4 @@ function Game () {
     </div>
   )
 }
-
 export default Game
