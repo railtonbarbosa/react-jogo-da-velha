@@ -2,9 +2,9 @@ import styles from "./GameInfo.module.css"
 import Icon from "../icon/Icon"
 import Buttton from "../button/Button"
 
-function GameInfo ({currentPlayer, winner, onReset, isDraw}) {
+function GameInfo ({currentPlayer, winner, onReset, isDraw}) { /* Jogador atual, vencedor, em Reset, é Empate */
   
-  const sholdEnableButton = () => {
+  const sholdEnableButton = () => { /* mantenha o botão Ativar */
     if (winner !== 0) return true
     if (isDraw) return true
   }

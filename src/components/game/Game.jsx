@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import styles from './Game.module.css'
-import GameOption from '../gameOption/GameOption'
-import GameInfo from '../gameInfo/GameInfo'
+import GameOption from '../gameOption/GameOption'/* Opção de jogo */
+import GameInfo from '../gameInfo/GameInfo'/* informação do jogo */
 import Score from '../score/Score'
-const winnerTable = [
+const winnerTable = [/* mesa do vencedor */
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -14,20 +14,20 @@ const winnerTable = [
   [2, 4, 6]
 ]
 function Game () {
-  const [gameState, setGameState] = useState(Array(9).fill(0))
-  const [currentPlayer, setCurrentPlayer] = useState(-1)
-  const [winner, setWinner] = useState(0)
-  const [winnerLine, setWinnerLine] = useState([])
-  const [draw, setDraw] = useState(false)
+  const [gameState, setGameState] = useState(Array(9).fill(0))/* estado do jogo */
+  const [currentPlayer, setCurrentPlayer] = useState(-1)/* jogador atual */
+  const [winner, setWinner] = useState(0)/* vencedora */
+  const [winnerLine, setWinnerLine] = useState([])/* vencedorLinha */
+  const [draw, setDraw] = useState(false)/* empate */
 
-  const handleClick = (pos) => {
+  const handleClick = (pos) => {/* lidar com clique */
     if (gameState[pos] === 0 && winner === 0) {
       let newGameState = [...gameState]
       newGameState[pos] = currentPlayer
       setGameState(newGameState)
     }
   }
-  const verifyGame = () => {
+  const verifyGame = () => {/* verificarJogo */
     winnerTable.forEach((line) => {
       const values = line.map((pos) => gameState[pos])
       const sum = values.reduce((sum, value) => sum + value)
@@ -37,7 +37,7 @@ function Game () {
       }
     })
   }
-  const handleReset = () => {
+  const handleReset = () => {/* lidar com Redefinir */
     setGameState(Array(9).fill(0))
     setWinner(0)
     setWinnerLine([])
@@ -68,7 +68,7 @@ function Game () {
       <div className={styles.game}>
         {
           gameState.map((value, pos) => 
-            <GameOption
+            <GameOption /* Opção de jogo */
               key={`game-option-pos-${pos}`}
               status={value}
               onClick={() => handleClick(pos)}
@@ -78,10 +78,10 @@ function Game () {
           )
         }
       </div>
-      <GameInfo 
+      <GameInfo /* Informação do Jogo */
         currentPlayer={currentPlayer}
         winner={winner}
-        onReset={handleReset}
+        onReset={handleReset} /* ao reiniciar, lidar com Redefinir */
         isDraw={draw}
       />
     </div>
