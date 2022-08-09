@@ -19,6 +19,8 @@ function Game () {
   const [winner, setWinner] = useState(0)/* vencedora */
   const [winnerLine, setWinnerLine] = useState([])/* vencedorLinha */
   const [draw, setDraw] = useState(false)/* empate */
+  const [xWinnerTimes,setxWinnerTimes] = useState (0) /* quantas vezes o x ganhou  */
+  const [CircleWinnerTimes,setCircleWinnerTimes] = useState (0) /* quantas vezes o circle ganhou  */
 
   const handleClick = (pos) => {/* lidar com clique */
     if (gameState[pos] === 0 && winner === 0) {
@@ -34,6 +36,11 @@ function Game () {
       if (sum === 3 || sum === -3) {
         setWinner(sum / 3)
         setWinnerLine(line)
+        if(sum > 0 ) {
+          setCircleWinnerTimes(CircleWinnerTimes + 1)
+        } else {
+          setxWinnerTimes(xWinnerTimes + 1)
+        }
       }
     })
   }
@@ -85,7 +92,10 @@ function Game () {
         isDraw={draw}
       />
     </div>
-    <Score />
+    <Score 
+     xWinnerTimes={xWinnerTimes}
+     circleWinnerTimes={CircleWinnerTimes}
+    />
     </>
   )
 }
