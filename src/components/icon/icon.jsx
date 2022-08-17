@@ -10,4 +10,4 @@ Icon.defaultprops = {
   size:"31px"
 }
 
-export default Icon
+export default Icon;
