@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import styles from './Game.module.css'
 import GameOption from '../gameOption/GameOption'/* Opção de jogo */
-import GameInfo from '../gameInfo/GameInfo'/* informação do jogo */
 import Score from '../score/Score'
+import GameInfo from "../gameInfo/GameInfo"
 const winnerTable = [/* mesa do vencedor */
   [0, 1, 2],
   [3, 4, 5],
