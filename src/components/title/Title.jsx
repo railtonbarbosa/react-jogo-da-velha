@@ -1,6 +1,6 @@
-import styles from "./Title.module.css"
+import styles from './Title.module.css'
 
-function Title ({children}) {
+function Title ({ children }) {
   return (
     <h1 className={styles.title}>{children}</h1>
   )

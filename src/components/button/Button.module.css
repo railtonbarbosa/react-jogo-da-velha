@@ -1,14 +1,13 @@
-.Buttton{
+.button {
   padding: 15px 30px;
   border-radius: 5px;
   cursor: pointer;
   border: none;
-  background-color: #007bff;
+  background-color: #007BFF;
   color: white;
- 
 }
 
-.Buttton:disabled{
+.button:disabled {
   cursor: default;
-  background-color: #61aeff;
+  background-color: #61AEFF;
 }

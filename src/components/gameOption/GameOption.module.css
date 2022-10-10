@@ -7,16 +7,12 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  
-  
-
 }
 
-.winner{
-  border: 2px solid #00eeff;
+.winner {
+  border: 2px solid #00EEFF;
 }
 
 .draw {
-  border: 2px solid #cdd91e;
-
+  border: 2px solid #EBFC00;
 }

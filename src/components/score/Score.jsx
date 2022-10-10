@@ -1,22 +1,23 @@
-import Icon from "../icon/Icon"
-import styles from "./score.module.css"
+import styles from './Score.module.css'
 
-function Score ({xWinnerTimes, circleWinnerTimes}) {
-  return(
-   <>
-    <h4>placar:</h4>
-    <div className={styles.score}>
-      <div className={styles.scorecontent}>
-        <Icon iconName="circle" />
-        <h2>{circleWinnerTimes}</h2>
-      </div>
-      <div className={styles.scorecontent}>
-      <Icon iconName="x" />
-      <h2>{xWinnerTimes}</h2>
+import Icon from '../icon/Icon'
 
+function Score ({ xWinnerTimes, circleWinnerTimes }) {
+  return (
+    <>
+      <h4>Placar:</h4>
+      <div className={styles.score}>
+        <div className={styles.scoreContent}>
+          <Icon iconName="circle" />
+          <h2>{circleWinnerTimes}</h2>
+        </div>
+        <div className={styles.scoreContent}>
+          <Icon iconName="x" />
+          <h2>{xWinnerTimes}</h2>
+        </div>
       </div>
-    </div>
-   </>
+    </>
   )
 }
+
 export default Score

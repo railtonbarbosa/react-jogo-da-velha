@@ -1,11 +1,10 @@
-.score{
+.score {
   display: flex;
   gap: 30px;
   margin-top: 20px;
-  
 }
 
-.scorecontent{
+.scoreContent {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import styles from './Game.module.css'
-import GameOption from '../gameOption/GameOption'/* Opção de jogo */
+
+import GameOption from '../gameOption/GameOption'
+import GameInfo from '../gameInfo/GameInfo'
 import Score from '../score/Score'
-import GameInfo from "../gameInfo/GameInfo"
-const winnerTable = [/* mesa do vencedor */
+
+const winnerTable = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -13,38 +15,41 @@ const winnerTable = [/* mesa do vencedor */
   [0, 4, 8],
   [2, 4, 6]
 ]
-function Game () {
-  const [gameState, setGameState] = useState(Array(9).fill(0))/* estado do jogo */
-  const [currentPlayer, setCurrentPlayer] = useState(-1)/* jogador atual */
-  const [winner, setWinner] = useState(0)/* vencedora */
-  const [winnerLine, setWinnerLine] = useState([])/* vencedorLinha */
-  const [draw, setDraw] = useState(false)/* empate */
-  const [xWinnerTimes,setxWinnerTimes] = useState (0) /* quantas vezes o x ganhou  */
-  const [CircleWinnerTimes,setCircleWinnerTimes] = useState (0) /* quantas vezes o circle ganhou  */
 
-  const handleClick = (pos) => {/* lidar com clique */
+function Game () {
+  const [gameState, setGameState] = useState(Array(9).fill(0))
+  const [currentPlayer, setCurrentPlayer] = useState(-1)
+  const [winner, setWinner] = useState(0)
+  const [winnerLine, setWinnerLine] = useState([])
+  const [draw, setDraw] = useState(false)
+  const [xWinnerTimes, setXWinnerTimes] = useState(0)
+  const [circleWinnerTimes, setCircleWinnerTimes] = useState(0)
+
+  const handleClick = (pos) => {
     if (gameState[pos] === 0 && winner === 0) {
       let newGameState = [...gameState]
       newGameState[pos] = currentPlayer
       setGameState(newGameState)
     }
   }
-  const verifyGame = () => {/* verificarJogo */
+
+  const verifyGame = () => {
     winnerTable.forEach((line) => {
       const values = line.map((pos) => gameState[pos])
       const sum = values.reduce((sum, value) => sum + value)
       if (sum === 3 || sum === -3) {
         setWinner(sum / 3)
         setWinnerLine(line)
-        if(sum > 0 ) {
-          setCircleWinnerTimes(CircleWinnerTimes + 1)
+        if (sum > 0) {
+          setCircleWinnerTimes(circleWinnerTimes + 1)
         } else {
-          setxWinnerTimes(xWinnerTimes + 1)
+          setXWinnerTimes(xWinnerTimes + 1)
         }
       }
     })
   }
-  const handleReset = () => {/* lidar com Redefinir */
+
+  const handleReset = () => {
     setGameState(Array(9).fill(0))
     setWinner(0)
     setWinnerLine([])
@@ -59,6 +64,7 @@ function Game () {
 
   const verifyWinnerLine = (pos) => 
     winnerLine.find((value) => value === pos) !== undefined
+
   useEffect(() => {
     setCurrentPlayer(currentPlayer * -1)
     verifyGame()
@@ -71,32 +77,33 @@ function Game () {
 
   return (
     <>
-     <div className={styles.gameContent}>
-      <div className={styles.game}>
-        {
-          gameState.map((value, pos) => 
-            <GameOption /* Opção de jogo */
-              key={`game-option-pos-${pos}`}
-              status={value}
-              onClick={() => handleClick(pos)}
-              isWinner={verifyWinnerLine(pos)}
-              isDraw={draw}
-            />
-          )
-        }
+      <div className={styles.gameContent}>
+        <div className={styles.game}>
+          {
+            gameState.map((value, pos) => 
+              <GameOption
+                key={`game-option-pos-${pos}`}
+                status={value}
+                onClick={() => handleClick(pos)}
+                isWinner={verifyWinnerLine(pos)}
+                isDraw={draw}
+              />
+            )
+          }
+        </div>
+        <GameInfo 
+          currentPlayer={currentPlayer}
+          winner={winner}
+          onReset={handleReset}
+          isDraw={draw}
+        />
       </div>
-      <GameInfo /* Informação do Jogo */
-        currentPlayer={currentPlayer}
-        winner={winner}
-        onReset={handleReset} /* ao reiniciar, lidar com Redefinir */
-        isDraw={draw}
+      <Score 
+        xWinnerTimes={xWinnerTimes}
+        circleWinnerTimes={circleWinnerTimes}
       />
-    </div>
-    <Score 
-     xWinnerTimes={xWinnerTimes}
-     circleWinnerTimes={CircleWinnerTimes}
-    />
     </>
   )
 }
+
 export default Game

@@ -17,13 +17,13 @@ function GameOption ({ status, onClick, isWinner, isDraw }) {
       onClick={onClick}
     >
       {
-        status === 1 && <GameIcon iconName="circle" /> /* icone do jogo */
+        status === 1 && <GameIcon iconName="circle" />
       }
       {
-        status === -1 && <GameIcon iconName="x" /> /* nome do icone */
+        status === -1 && <GameIcon iconName="x" />
       }
     </div>
   )
 }
 
-export default GameOption /* opção de jogo */
+export default GameOption

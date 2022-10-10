@@ -2,24 +2,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  
-  
-
-
 }
 
-  .gameContent {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin-bottom: 20px;
-  
-   
-  }
+.gameContent {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  @media screen and (max-width: 425px) {
-    .gameContent {
-      flex-direction: column;
-    }
+@media screen and (max-width: 425px) {
+  .gameContent {
+    flex-direction: column;
   }
- 
+}
